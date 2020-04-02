@@ -1,0 +1,14 @@
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
+import List from './components/List'
+
+function App() {
+  return (
+    <div className="App">
+      <List></List>
+    </div>
+  );
+}
+
+export default App;
