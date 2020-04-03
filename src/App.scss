@@ -5,6 +5,7 @@ $breakpoint-alpha: 480px; // breakpoint
 .rwd-table {
   margin: 1em 0;
   min-width: 300px;
+  margin: 0 auto;
   
   button {
     background: none;
@@ -83,6 +84,7 @@ h1 {
   font-weight: normal;
   letter-spacing: -1px;
   color: #34495E;
+  text-align: center;
 }
 
 .rwd-table {
