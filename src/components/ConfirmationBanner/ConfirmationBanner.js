@@ -1,13 +1,10 @@
 import React from 'react'
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import {editCompany} from './../../actions/companyActions'
+import {editCompany} from '../../actions/companyActions'
 import {useDispatch, useSelector} from 'react-redux'
 
-const ConfirmationBanner = ({handleSubmit, closeConfirmation}) => {
-  const dispatch = useDispatch();
-  const id = useSelector(store => store.comp.id);
-  const budget = useSelector(store => store.comp.budget);
+const ConfirmationBanner = ({handleSubmit, closeConfirmation, id, budget}) => {
   return (
     <Modal show centered size="sm" onHide = {closeConfirmation}>
       <Modal.Header closeButton>
@@ -20,7 +17,7 @@ const ConfirmationBanner = ({handleSubmit, closeConfirmation}) => {
 
       <Modal.Footer>
         <Button onClick={() => closeConfirmation()} variant="secondary">No</Button>
-        <Button onClick={() => handleSubmit(id, budget)} variant="primary">Yes</Button>
+        <Button onClick={() => handleSubmit({id, budget})} variant="primary">Yes</Button>
       </Modal.Footer>
     </Modal>
   )
