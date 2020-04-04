@@ -1,43 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {useSelector, useDispatch} from 'react-redux'
 import ListItem from "./../ListItem";
 import Modal from "./../Modal";
 import ConfirmationBanner  from './../ConfirmationBanner.js'
+import {editCompany, getCompanies, setCompanyId, setBudget} from './../../actions/companyActions'
+import {initialState} from './../../data/store'
 
-const mock = [{
-  id: 1,
-  name: 'Martian Firma',
-  budget: 10000.0000,
-  budget_spent: 4500.0000,
-  date_of_first_purchase: '2119-07-07'
-}, {
-  id: 2,
-  name: 'Solar Firma',
-  budget: 1123.2200,
-  budget_spent: 451.3754,
-  date_of_first_purchase: '2120-01-14'
-}]
-
-const List = () => {
-  const [companies, setCompanies] = useState(mock);
-  const [value, setValue] = useState(0);
-  const [name, setName] = useState(0);
+const List = (props) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCompanies(initialState));
+  }, []);
+  const companies = useSelector(state => state.comp.companies);
+  const id = useSelector(state => state.comp.id);
+  const budget = useSelector(state => state.comp.budget);
   const [showModal, setModal] = useState(false);
   const [showConfirmation, setConfirmation] = useState(false);
 
-  const handleModalSubmit = () => {
-    //cal
-    setValue(0);
-  }
-
-  const handleDialog = () => {
-    setModal(true);
+  const handleDialog = (id, budget) => {
+    setModal(true)
+    dispatch(setBudget(budget))
+    dispatch(setCompanyId(id))
   }
 
   const closeDialog = () => {
     setModal(false);
   }
 
-  const handleEdit = () => {
+  const handleEdit = (budget) => {
+    dispatch(setBudget(budget))
     setConfirmation(true)
   }
 
@@ -48,6 +39,7 @@ const List = () => {
   const handleSubmit = () => {
     setConfirmation(false)
     setModal(false)
+    dispatch(editCompany(id,budget))
   }
 
   return (
@@ -64,7 +56,7 @@ const List = () => {
           </tr>
         </thead>
         <tbody>
-          {companies.map(item => {
+          {companies && companies.map(item => {
             return (
               <ListItem
                 key={item.id}
@@ -72,7 +64,7 @@ const List = () => {
                 firstDate={item.date_of_first_purchase}
                 budget={item.budget}
                 budgetSpent={item.budget_spent}
-                handleDialog={handleDialog}
+                handleDialog={() => handleDialog(item.id, item.budget)}
               >
               </ListItem>
             );
@@ -80,7 +72,7 @@ const List = () => {
         </tbody>
       </table>
       {showModal &&
-        <Modal closeDialog={closeDialog} handleEdit={handleEdit} />
+        <Modal closeDialog={closeDialog} handleEdit={handleEdit} currentBudget = {budget}/>
       }
       {showModal && showConfirmation &&
       <ConfirmationBanner handleSubmit = {handleSubmit} closeConfirmation = {closeConfirmation}/>

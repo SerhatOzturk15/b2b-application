@@ -1,29 +1,33 @@
-const companies = [{
-  id: 1,
-  name: 'Martian Firma',
-  budget: 10000.0000,
-  budget_spent: 4500.0000,
-  date_of_first_purchase: '2119-07-07'
-}, {
-  id: 2,
-  name: 'Solar Firma',
-  budget: 1123.2200,
-  budget_spent: 451.3754,
-  date_of_first_purchase: '2120-01-14'
-}]
+//import {initialState} from './../data/store'
 
-export const CompanyReducer = (state = [], action) => {
+export const companyReducer = (state = [], action) => {
   switch (action.type) {
-    case 'EDIT_COMPANY':
+    case "EDIT_COMPANY":
       return {
-        ...state, companies: companies.map(company => {
-          return company.id === action.id ? {
-            ...company, budget_spent: action.budgetSpent
-          } : company;
+        ...state,
+        companies: state.companies.map(company => {
+          return company.id === action.payload.id
+            ? {
+                ...company,
+                budget_spent: action.payload.budget
+              }
+            : company;
         })
+      };
+    case "GET_COMPANY":
+      return {
+        ...state,
+        companies: action.payload.companies
+      };
+    case 'SET_COMPANY_ID':
+      return {
+        ...state, id: action.payload.id
+      }
+    case 'SET_BUDGET':
+      return {
+        ...state, budget: action.payload.budget
       }
     default:
-      return state
-
+      return state;
   }
-}
+};
