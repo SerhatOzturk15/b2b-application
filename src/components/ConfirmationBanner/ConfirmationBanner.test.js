@@ -61,6 +61,4 @@ describe("ConfirmationBanner Component", () => {
       expect(wrapper.text()).toEqual("this is confirmation title");
     });
   });
-
-})
- 
+});

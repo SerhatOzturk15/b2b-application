@@ -11,18 +11,7 @@ import { initialState } from "./../data/store";
 
 const HomeContainer = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getCompanies(initialState));
-  }, []);
 
-  //table header
-  const header = [
-    "Company Name",
-    "First Purchase Date",
-    "Total Budget",
-    "Budget Spent",
-    "Budget Left",
-  ];
   //states
   const [showModal, setModal] = useState(false);
   const [showConfirmation, setConfirmation] = useState(false);
@@ -32,7 +21,18 @@ const HomeContainer = () => {
   const budget = useSelector((state) => state.comp.budget);
   const id = useSelector((state) => state.comp.id);
 
-  useEffect(() => {}, []);
+  //table header
+  const header = [
+    "Company Name",
+    "First Purchase Date",
+    "Total Budget",
+    "Budget Spent",
+    "Budget Left",
+  ];
+
+  useEffect(() => {
+    dispatch(getCompanies(initialState));
+  }, [dispatch]);
 
   const handleDialog = (id, budget) => {
     setModal(true);

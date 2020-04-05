@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
@@ -11,7 +11,7 @@ const ConfirmationBanner = ({
   secondaryButtonText,
   primaryButtonText,
   bodyText,
-  confirmationTitle
+  confirmationTitle,
 }) => {
   return (
     <Modal
@@ -21,8 +21,10 @@ const ConfirmationBanner = ({
       onHide={closeConfirmation}
       data-test="confirmationComponent"
     >
-      <Modal.Header closeButton >
-        <Modal.Title data-test="confirmationTitle">{confirmationTitle}</Modal.Title>
+      <Modal.Header closeButton>
+        <Modal.Title data-test="confirmationTitle">
+          {confirmationTitle}
+        </Modal.Title>
       </Modal.Header>
 
       <Modal.Body data-test="confirmationBody">
@@ -49,15 +51,15 @@ const ConfirmationBanner = ({
   );
 };
 
-// ConfirmationBanner.propTypes = {
-//   handleSubmit: PropTypes.func,
-//   closeConfirmation: PropTypes.func,
-//   id: PropTypes.number,
-//   budget: PropTypes.number,
-//   secondaryButtonText: PropTypes.string.isRequired,
-//   primaryButtonText: PropTypes.string.isRequired,
-//   bodyText: PropTypes.string,
-//   confirmationTitle: PropTypes.string
-// }
+ConfirmationBanner.propTypes = {
+  handleSubmit: PropTypes.func,
+  closeConfirmation: PropTypes.func,
+  id: PropTypes.number,
+  budget: PropTypes.number,
+  secondaryButtonText: PropTypes.string.isRequired,
+  primaryButtonText: PropTypes.string.isRequired,
+  bodyText: PropTypes.string,
+  confirmationTitle: PropTypes.string
+}
 
 export default ConfirmationBanner;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -14,7 +14,7 @@ const ModalView = ({
   validationMessage,
   modalTitle,
   primaryButtonText,
-  secondaryButtonText
+  secondaryButtonText,
 }) => {
   const [currentBudget, setCurrentBudget] = useState(totalBudget);
 
@@ -45,16 +45,24 @@ const ModalView = ({
             placeholder="Enter Budget e.g 2500"
             defaultValue={currentBudget}
             onChange={(e) => handleBudgetChange(e)}
-            aria-label="Amount (to the nearest dollar)"
+            aria-label="Amount"
           />
         </InputGroup>
       </Modal.Body>
       {!isValid && <Error message={validationMessage} data-test="modalError" />}
       <Modal.Footer>
-        <Button onClick={() => closeDialog()} variant="secondary" data-test="secondaryButton">
+        <Button
+          onClick={() => closeDialog()}
+          variant="secondary"
+          data-test="secondaryButton"
+        >
           {secondaryButtonText}
         </Button>
-        <Button onClick={() => handleEdit(currentBudget)} variant="primary" data-test="primaryButton">
+        <Button
+          onClick={() => handleEdit(currentBudget)}
+          variant="primary"
+          data-test="primaryButton"
+        >
           {primaryButtonText}
         </Button>
       </Modal.Footer>
@@ -62,15 +70,15 @@ const ModalView = ({
   );
 };
 
-// ModalView.propTypes = {
-//   closeDialog: PropTypes.func,
-//   handleEdit: PropTypes.func,
-//   totalBudget: PropTypes.number,
-//   isValid: PropTypes.bool,
-//   validationMessage: PropTypes.string.isRequired,
-//   modalTitle: PropTypes.string.isRequired,
-//   primaryButtonText: PropTypes.string.isRequired,
-//   secondaryButtonText: PropTypes.string.isRequired,
-// }
+ModalView.propTypes = {
+  closeDialog: PropTypes.func,
+  handleEdit: PropTypes.func,
+  totalBudget: PropTypes.number,
+  isValid: PropTypes.bool,
+  validationMessage: PropTypes.string.isRequired,
+  modalTitle: PropTypes.string.isRequired,
+  primaryButtonText: PropTypes.string.isRequired,
+  secondaryButtonText: PropTypes.string.isRequired,
+}
 
 export default ModalView;
