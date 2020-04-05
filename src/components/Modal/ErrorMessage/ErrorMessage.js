@@ -1,9 +1,19 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-const ErrorMesage = ({message}) => {
-    return(<div style = {{background: '#C0392B', color: 'white', textAlign: 'center'}}>
-        {message}
-    </div>)
-}
+const ErrorMesage = ({ message }) => {
+  return (
+    <div
+      style={{ background: "#C0392B", color: "white", textAlign: "center" }}
+      data-test="errorMessageComponent"
+    >
+      {message}
+    </div>
+  );
+};
 
-export default ErrorMesage
+// ErrorMesage.propTypes = {
+//     message: PropTypes.string.isRequired,
+//   };
+
+export default ErrorMesage;

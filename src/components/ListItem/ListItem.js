@@ -1,8 +1,15 @@
-import React from 'react';
+import React from "react";
+import PropTypes from 'prop-types';
 import { MdEdit } from "react-icons/md";
 
-const ListItem = ({name, firstDate, budget, budgetSpent, budgetLeft, handleDialog}) => {
-
+const ListItem = ({
+  name,
+  firstDate,
+  budget,
+  budgetSpent,
+  budgetLeft,
+  handleDialog,
+}) => {
   return (
     <tr>
       <td data-th="Company Name">{name}</td>
@@ -16,7 +23,16 @@ const ListItem = ({name, firstDate, budget, budgetSpent, budgetLeft, handleDialo
         </button>
       </td>
     </tr>
-  )
-}
+  );
+};
 
-export default ListItem
+// ListItem.propTypes = {
+//   name: PropTypes.string,
+//   firstDate: PropTypes.string,
+//   budget: PropTypes.string,
+//   budgetSpent: PropTypes.string,
+//   budgetLeft: PropTypes.string,
+//   handleDialog: PropTypes.func,
+// };
+
+export default ListItem;

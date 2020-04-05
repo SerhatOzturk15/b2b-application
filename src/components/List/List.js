@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import PropTypes from 'prop-types'
 import ListItem from "./../ListItem";
-import Modal from "./../Modal";
-import ConfirmationBanner from "../ConfirmationBanner";
 
 const List = ({ header, items, handleDialog }) => {
-
-    //convert number to german format with 2 decimals at the end for displaying purposes
-    const formatNumber = (number) => {
-      return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(number)
-    }
+  //convert number to german format with 2 decimals at the end for displaying purposes
+  const formatNumber = (number) => {
+    return new Intl.NumberFormat("de-DE", {
+      style: "currency",
+      currency: "EUR",
+    }).format(number);
+  };
   return (
     <>
-      <table className="rwd-table">
+      <table className="rwd-table" data-test="listComponent">
         <thead>
           <tr>
-            {header.map((col) => {
+            {header && header.map((col) => {
               return <th key={col}>{col}</th>;
             })}
           </tr>
@@ -39,5 +40,11 @@ const List = ({ header, items, handleDialog }) => {
     </>
   );
 };
+
+// List.propTypes = {
+//   header: PropTypes.arrayOf(PropTypes.string), 
+//   items: PropTypes.arrayOf(PropTypes.object), 
+//   handleDialog: PropTypes.func
+// };
 
 export default List;
