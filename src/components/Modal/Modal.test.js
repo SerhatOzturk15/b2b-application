@@ -86,21 +86,4 @@ describe("Modal Component", () => {
       expect(wrapper.length).toBe(1);
     });
   });
-
-  // describe('button click', () => {
-  //     const mockCallBack = jest.fn();
-  //     let component;
-  //     beforeEach(() => {
-  //         const props = {
-  //         onClick: {mockCallBack}
-  //         }
-  //         component = setUp(props);
-  //     });
-  //     test('Should render without errors', () => {
-  //         const mockCallBack = jest.fn();
-  //         const wrapper = findByTestAttr(component, 'secondaryButton');
-  //         wrapper.simulate('click');
-  //         expect(mockCallBack.mock.calls.length).toBe(1);
-  //     });
-  // })
 });
