@@ -8,9 +8,9 @@ export const companyReducer = (state = [], action) => {
         companies: state.companies.map((company) => {
           return company.id === action.payload.id
             ? {
-                ...company,
-                budget_spent: action.payload.budget,
-              }
+              ...company,
+              budget_spent: action.payload.budget,
+            }
             : company;
         }),
       };
